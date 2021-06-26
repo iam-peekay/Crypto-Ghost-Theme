@@ -1,0 +1,55 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+<main id="site-main">
+  <div class="container">
+    {{#author}}
+
+    {{> "breadcrumbs"}}
+
+    <div class="post-list-header">
+      <h1 class="post-list-header-title">
+        {{#if profile_image}}
+        <img class="author-profile-image" src="{{img_url profile_image size="s"}}" alt="{{name}}" />
+        {{/if}}
+        {{name}}
+      </h1>
+      <h2 class="post-list-header-description">
+        {{bio}}
+      </h2>
+      <nav class="social-links">
+        <ul>
+          {{#if website}}<li class="social-link"><a href="{{website}}"><i class="fas fa-globe"></i></a></li>{{/if}}
+          {{#if facebook}}<li class="social-link"><a href="{{facebook_url facebook}}"><i class="fab fa-facebook"></i></a></li>{{/if}}
+          {{#if twitter}}<li class="social-link"><a href="{{twitter_url twitter}}"><i class="fab fa-twitter"></i></a></li>{{/if}}
+        </ul>
+      </nav>
+    </div>
+    {{/author}}
+
+    <div class="post-list">
+      {{#foreach posts}}
+      <article id="{{id}}" class="post-card">
+        <a href="{{url}}" class="post-card-link">
+          <header class="post-card-header">
+            <h3 class="post-card-title">{{title}}</h3>
+          </header>
+          <div class="">
+            <img src="{{feature_image}}">
+          </div>
+
+          <div class="post-card-content">
+            <p>{{excerpt words="33"}}</p>
+          </div>
+
+          <footer class="post-card-footer post-meta">
+            {{> "author-list"}}
+            <span class="reading-time">{{t "Updated"}} <time class="post-full-meta-date" datetime="{{date updated_at format="YYYY-MM-DD"}}">{{date updated_at timeago="true"}}</time></span>
+          </footer>
+        </a>
+      </article>
+      {{/foreach}}
+    </div>
+  </div>
+</main>

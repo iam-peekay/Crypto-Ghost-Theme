@@ -1,0 +1,19 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+<main id="site-main">
+  <div class="container">
+    <div class="inner">
+      <article>
+        <section class="post-content">
+          <section class="error-message">
+            <h1 class="error-code">{{statusCode}}</h1>
+            <p class="error-description">{{message}}</p>
+            <a class="error-link" href="{{@site.url}}">{{t "Go to the front page"}} →</a>
+          </section>
+        </section>
+      </article>
+    </div>
+  </div>
+</main>

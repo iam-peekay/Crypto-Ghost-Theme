@@ -1,0 +1,82 @@
+{{!< ../default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+<main id="site-main">
+  <div class="container">
+    <div class="inner">
+      <article>
+        <header class="post-header">
+          <h1 class="post-title">{{t "Account"}}</h1>
+        </header>
+
+        <section class="post-content account-content">
+          {{#if @member.paid}}
+            <p>{{t "You are currently a paying subscriber with full access to all site areas."}}</p>
+            <p>{{t "View your membership details or update your billing info below."}}</p>
+            
+            {{#foreach @member.subscriptions}}
+            <div class="subscriber-details">
+              <div class="subscriber-detail-column one">
+                <div>
+                  <label class="heading">{{t "Email address"}}</label>
+                  <span class="subscriber-content">{{@member.email}}</span>
+                </div>
+                <div>
+                  <label class="heading">{{t "Your plan"}}</label>
+                  <span class="subscriber-content">{{plan.nickname}} — {{plan.currency_symbol}}{{price plan.amount}}/{{plan.interval}}</span>
+                </div>
+              </div>
+              <div class="subscriber-detail-column two">
+                <div>
+                  <label class="heading">{{t "Card"}}</label>
+                  <span class="subscriber-content">**** **** **** {{default_payment_card_last4}}</span>
+                </div>
+                <div>
+                  <label class="heading">
+                    {{#if cancel_at_period_end}}
+                    {{t "Expires"}}
+                    {{else}}
+                    {{t "Next bill date"}}
+                    {{/if}}
+                  </label>
+                  <span class="subscriber-content">{{date current_period_end format="DD MMM YYYY"}}</span>
+                </div>
+              </div>
+              <div class="subscriber-cancel">
+                {{cancel_link class="subscriber-cancel-button" errorClass="subscriber-cancel-error" cancelLabel=(t "Cancel subscription") continueLabel=(t "Continue subscription")}}
+              </div>
+              <a href="#" class="subscriber-detail-billing" data-members-edit-billing>
+                {{t "Edit billing info"}} <span>&rarr;</span>
+              </a>
+            </div>    
+            {{/foreach}}
+          {{else if @member}}    
+            <p>{{t "You are not currently a paid subscriber."}}</p>      
+            <p>{{t "Upgrade to a paid plan below to unlock full access and other exclusive content."}}</p>
+
+            <div class="subscriber-details">
+              <div class="subscriber-detail-column one">
+                <div>
+                  <label class="heading">{{t "Email address"}}</label>
+                  <span class="subscriber-content">{{@member.email}}</span>
+                </div>
+              </div>
+              <div class="subscriber-detail-column two">
+                <div>
+                  <label class="heading">{{t "Your plan"}}</label>
+                  <span class="subscriber-content">{{t "Free"}}</span>
+                </div>
+              </div>
+            </div>    
+
+            {{> "membership-plans"}}
+          {{else}}
+            {{!-- Not logged in: Redirect to signin --}}
+            <script>window.location = '{{@site.url}}/signin/';</script>
+          {{/if}}                            
+        </section>
+      </article>
+    </div>
+  </div>
+</main>

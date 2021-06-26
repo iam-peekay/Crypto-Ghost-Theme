@@ -1,0 +1,29 @@
+{{!< ../default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+<main id="site-main">
+  <div class="container">
+    {{> "breadcrumbs"}}
+
+    <div class="inner">
+      {{#if @member}}
+        {{!-- Logged in: Redirect home --}}
+        <script>window.location = '{{@site.url}}';</script>
+      {{else}}        
+        <section class="post-content members-content">
+          <h1 class="members-form-title">{{t "Welcome back!"}}</h1>
+          <p class="members-form-subtitle">{{t "Sign into your account again for full access"}}</p>        
+          <form class="members-form" data-members-form="signin">
+            <div class="notification notification-success"><b>{{t "Great!"}}</b> {{t "Check your inbox and click the link to complete sign in"}}</div>
+            <div class="notification notification-error">{{t "Please enter a valid email address!"}}</div>        
+
+            <input data-members-email type="email" placeholder="Your email address" required="true" autocomplete="false" />
+            <input type="submit" value="{{t "Send login link"}}" />
+          </form>
+          <small class="members-question">{{t "Don't have an account yet?"}} <a href="{{@site.url}}/signup/">{{t "Sign up"}}</a></small>
+        </section>
+      {{/if}}
+    </div>
+  </div>
+</main>

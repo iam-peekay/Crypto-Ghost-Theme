@@ -1,0 +1,57 @@
+<div class="membership-plans">
+  {{#if include-free}}
+  <div class="membership-plan membership-plan-free">
+    <div class="membership-plan-header">
+      <h2 class="membership-plan-title">{{t "Free"}}</h2>
+      <h3 class="membership-plan-price">{{@price.currency_symbol}}0</h3>
+    </div>
+    <div class="membership-plan-content">
+      <ul>
+        <li>Access to subscriber posts</li>
+        <li>Support independent publishing</li>
+        <li>Simple, secure card payment</li>
+      </ul>
+    </div>
+    <div class="membership-plan-footer">
+      <a href="{{@site.url}}/signup/"><span>{{t "Sign up now"}}</span></a>
+    </div>
+  </div>
+  {{/if}}
+
+  <div class="membership-plan membership-plan-monthly">
+    <div class="membership-plan-header">
+      <h2 class="membership-plan-title">{{t "Monthly"}}</h2>
+      <h3 class="membership-plan-price">{{@price.currency_symbol}}{{@price.monthly}} <small>/ {{t "month"}}</small></h3>
+    </div>
+    <div class="membership-plan-content">
+      <ul>
+        <li>Full access to all private posts</li>
+        <li>Regular updates with new content</li>
+        <li>Support independent publishing</li>
+        <li>Simple, secure card payment</li>
+      </ul>
+    </div>
+    <div class="membership-plan-footer">
+      <a href="javascript:" data-members-plan="Monthly"><span>{{t "Sign up now"}}</span></a>
+    </div>
+  </div>
+
+  <div class="membership-plan membership-plan-yearly">
+    <div class="membership-plan-header">
+      <h2 class="membership-plan-title">{{t "Yearly"}}</h2>
+      <h3 class="membership-plan-price">{{@price.currency_symbol}}{{@price.yearly}} <small>/ {{t "year"}}</small></h3>
+    </div>
+    <div class="membership-plan-content">
+      <ul>
+        <li>Full access to all private posts</li>
+        <li>Regular updates with new content</li>
+        <li>Support independent publishing</li>
+        <li>Simple, secure card payment</li>
+        <li>One easy payment instead of 12!</li>
+      </ul>
+    </div>
+    <div class="membership-plan-footer">
+      <a href="javascript:" data-members-plan="Yearly"><span>{{t "Sign up now"}}</span></a>
+    </div>
+  </div>  
+</div>

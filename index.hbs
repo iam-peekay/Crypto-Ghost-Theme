@@ -1,0 +1,34 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+<section class="site-title no-image">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="site-name">{{@site.title}}</h1>
+      <h2 class="site-description">{{@site.description}}</h2>
+    </div>
+  </div>
+</section>
+
+<main id="site-main" class="container">
+  <div class="post-list">
+    {{#get "tags" limit="all" order="description asc"}}
+    {{#foreach tags}}
+    <article id="{{id}}" class="post-card">
+      <a href="{{url}}" class="post-card-link">
+        <header class="post-card-header">
+          <h3 class="post-card-title">{{name}}</h3>
+        </header>
+
+        <footer class="post-card-footer post-meta">
+          {{#get "posts" filter="tags:[{{slug}}]+id:-{{id}}" include="tags"}}
+            {{plural posts.length empty=(t "No articles") singular=(t "See 1 article") plural=(t "See all % articles")}} →
+          {{/get}}
+        </footer>
+      </a>
+    </article>
+    {{/foreach}}
+    {{/get}}
+  </div>
+</main>

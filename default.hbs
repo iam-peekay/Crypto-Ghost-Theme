@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="{{@site.lang}}">
+<head>
+    {{!-- Document Settings --}}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{!-- Base Meta --}}
+    <title>{{meta_title}}</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{!-- Stylesheets --}}
+    <link rel="stylesheet" href="{{asset "built/styles.min.css"}}">
+
+    {{!-- This tag outputs SEO meta+structured data and other important settings --}}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+  <main>
+    {{> "sidebar"}}
+      <a href="{{@site.url}}" class="site-logo">
+        {{#if @site.logo}}
+          <img src="{{@site.logo}}" alt="{{@site.title}}" />
+        {{else}}
+          <img src="assets/images/logo.png" alt="{{@site.title}}" />
+        {{/if}}
+      </a>
+
+      <span class="sidebar-nav-toggle">
+        <a href="javascript:;" class="toggle-sidebar-nav"><i class="fas fa-stream"></i></a>        
+        <a href="javascript:;" class="toggle-search"><i class="fas fa-search"></i></a>
+      </span>
+
+      <div class="sidebar-inner">
+
+        <nav class="sidebar-nav">
+          <ul>
+          {{#get "tags" limit="all" order="description asc"}}
+            {{#foreach tags}}
+            <li id="tag-{{id}}">
+              <a href="{{url}}">
+                <span class="tag-name">{{name}}</span>
+                <span class="toggle">
+                  <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="Preview-(Bold)" transform="translate(-280.000000, -385.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g id="sidebar">
+                                  <g id="subnav" transform="translate(26.000000, 131.000000)">
+                                      <g id="arrow-right-copy" transform="translate(254.000000, 254.000000)">
+                                          <path d="M6.78125,5.83169271 C6.78125,5.83114583 6.78125,5.83032552 6.78125,5.82977865 C6.78125,5.59790365 6.685,5.38872396 6.53023438,5.23942708 L6.53050781,5.23915365 L1.60863281,0.317278646 L1.60644531,0.319466146 C1.4590625,0.178098958 1.25945313,0.0911458333 1.0390625,0.0911458333 C0.585976562,0.0911458333 0.21875,0.458372396 0.21875,0.911458333 C0.21875,1.16028646 0.329765625,1.38313802 0.504765625,1.53352865 L4.80265625,5.83141927 L0.4484375,10.185638 L0.448710937,10.1859115 C0.306523437,10.3335677 0.21875,10.5339974 0.21875,10.7552083 C0.21875,11.2082943 0.585976562,11.5755208 1.0390625,11.5755208 C1.26027344,11.5755208 1.46070312,11.4880208 1.60835937,11.3455599 L1.60863281,11.3458333 L6.53050781,6.42395833 L6.53023438,6.4236849 C6.685,6.27438802 6.78125,6.06520833 6.78125,5.83333333 C6.78125,5.83278646 6.78125,5.83223958 6.78125,5.83169271 Z" id="Path"></path>
+                                      </g>
+                                  </g>
+                              </g>
+                          </g>
+                      </g>
+                  </svg>
+                </span>
+              </a>
+              <ul>
+                {{#get "posts" filter="tags:[{{slug}}]+id:-{{id}}" limit="all" order="published_at asc" include="tags"}}
+                  {{#foreach posts visibility="all"}}
+                    <li id="post-{{slug}}" class="post-access-{{visibility}} "><a href="{{url}}">{{title}}</a></li>
+                  {{/foreach}}
+                {{/get}}
+              </ul>
+            </li>
+            {{/foreach}}
+          {{/get}}
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <section class="content">
+      <nav class="site-nav">
+        {{#if @site.navigation}}
+          {{navigation}}
+        {{/if}}
+
+        {{> "search"}}
+      </nav>
+
+      {{> "notifications"}}
+
+      {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+      {{{body}}}
+    </section>
+  </main>
+
+  <script type="text/javascript" src="{{asset "built/scripts.min.js"}}"></script>
+
+  {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
+  {{{block "scripts"}}}
+
+  {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
+  {{ghost_foot}}
+
+</body>
+</html>

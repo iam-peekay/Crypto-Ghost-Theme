@@ -1,0 +1,43 @@
+{{^has visibility="public"}}
+<div class="members-gate-blur">
+	<p aria-hidden="true">This post is for subscribers only. You don't have access to this post on {{@site.title}} at
+		the moment, but if you upgrade your account you'll be able to see the whole thing, as well as all the other
+		posts in the archive! Subscribing only takes a few seconds and will give you immediate access.</p>
+	<p aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget augue quam. Suspendisse
+		feugiat eros dapibus, auctor nulla eu, ultrices nibh. Aliquam felis justo, laoreet non sapien sit amet,
+		vestibulum auctor est. Curabitur ultrices orci libero. Donec ac sem ac nisi vulputate condimentum. Aliquam felis
+		justo, laoreet non sapien sit amet. Donec eget augue quam. Suspendisse feugiat eros dapibus. Curabitur rhoncus
+		varius mauris eu feugiat. Curabitur ultrices orci libero. Donec ac sem ac nisi vulputate condimentum. Aliquam
+		felis justo, laoreet non sapien sit amet. Donec eget augue quam. Suspendisse feugiat eros dapibus.</p>
+	<p aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget augue quam. Suspendisse
+		feugiat eros dapibus, auctor nulla eu, ultrices nibh. Aliquam felis justo, laoreet non sapien sit amet,
+		vestibulum auctor est. Curabitur ultrices orci libero. Donec ac sem ac nisi vulputate condimentum. Aliquam felis
+		justo, laoreet non sapien sit amet. Donec eget augue quam. Suspendisse feugiat eros dapibus. Curabitur rhoncus
+		varius mauris eu feugiat. Curabitur ultrices orci libero. Donec ac sem ac nisi vulputate condimentum. Aliquam
+		felis justo, laoreet non sapien sit amet. Donec eget augue quam. Suspendisse feugiat eros dapibus.</p>
+	<p aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget augue quam. Suspendisse
+		feugiat eros dapibus, auctor nulla eu, ultrices nibh. Aliquam felis justo, laoreet non sapien sit amet,
+		vestibulum auctor est. Curabitur ultrices orci libero. Donec ac sem ac nisi vulputate condimentum. Aliquam felis
+		justo, laoreet non sapien sit amet. Donec eget augue quam. Suspendisse feugiat eros dapibus. Curabitur rhoncus
+		varius mauris eu feugiat. Curabitur ultrices orci libero. Donec ac sem ac nisi vulputate condimentum. Aliquam
+		felis justo, laoreet non sapien sit amet. Donec eget augue quam. Suspendisse feugiat eros dapibus.</p>
+</div>
+
+<div class="members-gate">
+	{{#if @member}}
+		{{content}}
+	{{else}}
+		<h2>{{t "This post is for subscribers only"}}</h2>
+		<p>
+			{{t "Sign up now to read this post and get access to the full library of content."}}
+		</p>
+		<a class="members-gate-button" href="#/portal/signup"><span>{{t "Sign up now"}}</span></a>
+		<small class="members-gate-question">{{t "Already have an account?"}}
+			<a href="#/portal/signin">{{t
+				"Sign in"}}
+			</a>
+		</small>
+		<div data-portal="signup"></div>
+	{{/if}}
+</div>
+{{/has}}

@@ -1,0 +1,13 @@
+<ul class="author-list">
+{{#foreach authors}}
+  <li class="author-list-item tippy" data-tippy-content="{{name}}">
+      <div class="static-avatar">
+        {{#if profile_image}}
+          <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+        {{else}}
+          {{> "avatar"}}
+        {{/if}}
+      </div>
+  </li>
+{{/foreach}}
+</ul>

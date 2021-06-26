@@ -1,0 +1,40 @@
+{{#if @site.cover_image}}
+
+<style>
+.responsive-sidebar-img {
+    background-image: url({{img_url @site.cover_image size='xl'}});
+}
+@media(max-width: 1000px) {
+    .responsive-sidebar-img {
+        background-image: url({{img_url @site.cover_image size='l'}});
+        background-image: -webkit-image-set(
+                url({{img_url @site.cover_image size='l'}}) 1x,
+                url({{img_url @site.cover_image size='xl'}}) 2x
+        );
+        background-image: image-set(
+                url({{img_url @site.cover_image size='l'}}) 1x,
+                url({{img_url @site.cover_image size='xl'}}) 2x
+        );
+    }
+}
+@media(max-width: 600px) {
+    .responsive-sidebar-img {
+        background-image: url({{img_url @site.cover_image size='m'}});
+        background-image: -webkit-image-set(
+                url({{img_url @site.cover_image size='m'}}) 1x,
+                url({{img_url @site.cover_image size='l'}}) 2x
+        );
+        background-image: image-set(
+                url({{img_url @site.cover_image size='m'}}) 1x,
+                url({{img_url @site.cover_image size='l'}}) 2x
+        );
+    }
+}
+</style>
+<aside class="sidebar responsive-sidebar-img">
+
+{{else}}
+
+<aside class="sidebar no-image">
+
+{{/if}}

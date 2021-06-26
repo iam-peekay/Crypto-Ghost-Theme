@@ -1,0 +1,99 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+{{#post}}
+
+<main id="site-main">
+  <div class="container">
+    <div class="inner">
+      <article class="post-wrapper">
+        <header class="post-header">
+          <h1 class="post-title">{{title}}</h1>
+        </header>
+
+        <section class="post-full-content">
+          <aside class="toc-container">
+            <div class="toc"></div>
+          </aside>
+
+          <div class="post-content">
+            {{#if access}}
+              {{content}}
+            {{else}}
+              {{> "members-gate"}}
+            {{/if}}
+          </div>
+        </section>
+
+        <nav class="post-nav {{^next_post}}singluar{{/next_post}} {{^prev_post}}singluar{{/prev_post}}">
+         {{#prev_post}}
+          <a href="{{url}}" class="post-nav-link">
+            <div class="post-nav-link-icon">
+              <svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" class="icon-7f6730be--text-3f89f380"><g><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></g></svg>
+            </div>
+            <div class="post-nav-link-text">
+              <span>Previous</span>
+              {{title}}
+            </div>
+          </a>
+          {{/prev_post}}
+
+          {{#next_post}}
+          <a href="{{url}}" class="post-nav-link">
+            <div class="post-nav-link-text">
+              <span>Next</span>
+              {{title}}
+            </div>
+            <div class="post-nav-link-icon">
+              <svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" class="icon-7f6730be--text-3f89f380"><g><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></g></svg>
+            </div>
+          </a>
+          {{/next_post}}
+
+
+        </nav>
+
+        <footer class="post-card-footer post-meta">
+          <div class="post-author-date">
+            {{> "author-list"}}
+            <span class="reading-time">{{t "Updated"}} <time class="post-full-meta-date" datetime="{{date updated_at format="YYYY-MM-DD"}}">{{date updated_at timeago="true"}}</time></span>
+          </div>
+
+          {{> "breadcrumbs"}}
+        </footer>
+      </article>
+    </div>
+  </div>
+</main>
+
+<section class="post-full-comments container">
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+
+      var disqus_config = function () {
+      this.page.url = "{{url absolute="true"}}";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "ghost-{{comment_id}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://crypto-preethikasireddy.disqus.com/embed.js';            
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+<script>
+  var navItem = document.getElementById("post-{{slug}}");
+
+  navItem.className += 'active';
+  navItem.parentElement.parentElement.className = 'active';
+</script>
+
+{{/post}}
