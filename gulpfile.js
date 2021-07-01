@@ -4,7 +4,7 @@
 
   // Include Gulp & Plugins
   var gulp         = require('gulp'),
-      sass         = require('gulp-sass'),
+      sass         = require('gulp-sass')(require('node-sass')),
       cleanCSS     = require('gulp-clean-css'),
       autoprefixer = require('gulp-autoprefixer'),
       concat       = require('gulp-concat'),

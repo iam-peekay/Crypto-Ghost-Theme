@@ -610,7 +610,7 @@ button {
   padding: 25px;
   top: 0;
   left: 0;
-  width: 380px;
+  width: 320px;
   height: 100vh;
   background: $accent;
   display: flex;
@@ -912,7 +912,6 @@ button {
   .post-list-header-title {
     font-size: 36px;
     color: #1f1f1f;
-    border-bottom: 1px solid #eaeaea;
     margin-bottom: 25px;
     padding-bottom: 25px;
 
@@ -963,7 +962,7 @@ button {
 .post-card {
   background: #fff;
   margin-bottom: 30px;
-  margin-right: 80px;
+  margin-right: 100px;
   border-radius: 4px;
   border: 1px solid #f0f0f0;
   box-shadow: 0 1px 6px 0 #dfe5ee;
@@ -1153,7 +1152,6 @@ button {
 }
 
 .post-header {
-  border-bottom: 1px solid #eaeaea;
   margin-bottom: 25px;
   padding-bottom: 25px;
 
