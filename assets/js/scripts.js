@@ -46,11 +46,14 @@ $(document).ready(function() {
   if (action == 'subscribe') {
     $('body').addClass("subscribe-success");
   }
+  // if (action == 'signup') {
+  //     window.location = '{{@site.url}}/signup/?action=checkout';
+  // }
+  // if (action == 'checkout') {
+  //     $('body').addClass("signup-success");
+  // }
   if (action == 'signup') {
-      window.location = '{{@site.url}}/signup/?action=checkout';
-  }
-  if (action == 'checkout') {
-      $('body').addClass("signup-success");
+    $('body').addClass("signup-success");
   }
   if (action == 'signin') {
       $('body').addClass("signin-success");
